@@ -3,6 +3,7 @@
 
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host.Config;
+using Newtonsoft.Json;
 using System.IO;
 
 namespace SampleExtension
@@ -15,8 +16,17 @@ namespace SampleExtension
     {
         // Root path where files are written. 
         // Used when attribute.Root is blank 
+        // This is an example of extension-global configuration. 
+        // Generally, attributes should be able to override these settings. 
+        // Make sure these settings are Json serialization friendly. 
+        [JsonProperty("Root")]
         public string Root { get; set; }
 
+        /// <summary>
+        /// This callback is invoked by the WebJobs framework before the host starts execution. 
+        /// It should add the binding rules and converters for our new <see cref="SampleAttribute"/> 
+        /// </summary>
+        /// <param name="context"></param>
         public void Initialize(ExtensionConfigContext context)
         {
             // Register converters. These help convert between the user's parameter type
@@ -24,15 +34,21 @@ namespace SampleExtension
 
             // This allows a user to bind to IAsyncCollector<string>, and the sdk
             // will convert that to IAsyncCollector<SampleItem>
-            context.Converters.AddConverter<string, SampleItem>(ConvertToItem);
+            context.AddConverter<string, SampleItem>(ConvertToItem);
             
             // This is useful on input. 
-            context.Converters.AddConverter<SampleItem, string>(ConvertToString);
+            context.AddConverter<SampleItem, string>(ConvertToString);
 
             // Create 2 binding rules for the Sample attribute.
             context.AddBindingRule<SampleAttribute>().
                 BindToInput<SampleItem>(BuildItemFromAttr). 
                 BindToCollector<SampleItem>(BuildCollector);
+        }
+
+        private string GetRoot(SampleAttribute attribute)
+        {
+            var root = attribute.Root ?? this.Root ?? Path.GetTempPath();
+            return root;
         }
 
         private string ConvertToString(SampleItem item)
@@ -56,13 +72,7 @@ namespace SampleExtension
             return new SampleAsyncCollector(root);
         }
         
-        private string GetRoot(SampleAttribute attribute)
-        {
-            var root = attribute.Root ?? this.Root ?? Path.GetTempPath();
-            return root;
-        }
-
-        // All {} and %% in the Attribute have been resolved by now. 
+          // All {} and %% in the Attribute have been resolved by now. 
         private SampleItem BuildItemFromAttr(SampleAttribute attribute)
         {
             var root = GetRoot(attribute);
