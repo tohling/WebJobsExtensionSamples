@@ -16,6 +16,6 @@ Sample reader:
 ```
 
 There are several projects:
-1. SampleExtension - the actual new binding.  
+1. SampleExtension - the actual new binding. The extension dll can also be published to Functions and be consumed by code writtin in the Functions portal. 
 2. SampleFunctions - example of user code consuming the binding. 
-3. Host - a small executable used to run the sample locally.  
+3. Host - a small executable used to invoke the bindings and run the sample locally.  In the portal, the Functions runtime will handle this for you. 
