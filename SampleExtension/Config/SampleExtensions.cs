@@ -6,7 +6,7 @@ using Microsoft.Azure.WebJobs.Host.Config;
 using Newtonsoft.Json;
 using System.IO;
 
-namespace SampleExtension
+namespace SampleExtension.Config
 {
     /// <summary>
     /// Extension for binding <see cref="SampleAttribute"/>.

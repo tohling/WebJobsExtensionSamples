@@ -39,5 +39,19 @@ namespace SampleFunctions
         {
             log.WriteLine($"{item.Name}:{item.Contents}");
         }
+
+        #region Using 2nd extensions
+
+        // Bind to input as rich type:
+        // BindToInput<SampleItem> --> item
+        [NoAutomaticTrigger]
+        public void Reader3(
+            string name,  // from trigger
+            [Sample(Name = "{name}")] CustomType<int> item,
+            TextWriter log)
+        {
+            log.WriteLine($"Via custom type {item.Name}:{item.Value}");
+        }
+        #endregion 
     }
 }

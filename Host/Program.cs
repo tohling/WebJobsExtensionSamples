@@ -3,6 +3,7 @@
 
 using Microsoft.Azure.WebJobs;
 using SampleFunctions;
+using System;
 
 namespace Host
 {
@@ -15,8 +16,15 @@ namespace Host
             config.DashboardConnectionString = null;
 
             // apply config before creating the host. 
-            var sampleExtension = new SampleExtension.SampleExtensions();
+            var sampleExtension = new SampleExtension.Config.SampleExtensions();
             config.AddExtension(sampleExtension);
+
+            // A 2nd extension that adds a custom rule on top of the first extension. 
+            var sample2Extension = new SampleExtension.Config.Sample2Extensions();
+            config.AddExtension(sample2Extension);
+
+            // Debug diagnostics!
+            config.GetTooling().DebugDumpGraph(Console.Out);
 
             var host = new JobHost(config);
 
@@ -25,7 +33,7 @@ namespace Host
             var method = typeof(Functions).GetMethod("Writer");
             host.Call(method);
 
-            method = typeof(Functions).GetMethod("Reader2");
+            method = typeof(Functions).GetMethod("Reader3");
             host.Call(method, new { name = "tom" });
 
             // host.RunAndBlock();

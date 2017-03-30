@@ -85,6 +85,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Sample2Extension\Sample2Extension.csproj">
+      <Project>{8aaf014a-b562-4fe5-83c1-df0f4f052062}</Project>
+      <Name>Sample2Extension</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SampleExtension\SampleExtension.csproj">
       <Project>{eddd5dd2-b022-4baa-8088-b8e14aa899fc}</Project>
       <Name>SampleExtension</Name>

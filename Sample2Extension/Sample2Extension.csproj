@@ -4,18 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CF992C26-5A64-4FED-8295-FB2CC4FE5547}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{8AAF014A-B562-4FE5-83C1-DF0F4F052062}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Host</RootNamespace>
-    <AssemblyName>Host</AssemblyName>
+    <RootNamespace>Sample2Extension</RootNamespace>
+    <AssemblyName>Sample2Extension</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -25,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -80,25 +77,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="CustomType.cs" />
+    <Compile Include="Config\Sample2Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Sample2Extension\Sample2Extension.csproj">
-      <Project>{8aaf014a-b562-4fe5-83c1-df0f4f052062}</Project>
-      <Name>Sample2Extension</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SampleExtension\SampleExtension.csproj">
       <Project>{eddd5dd2-b022-4baa-8088-b8e14aa899fc}</Project>
       <Name>SampleExtension</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SampleFunctions\SampleFunctions.csproj">
-      <Project>{0f9768c5-72cb-4cd8-9627-a055ab6e7274}</Project>
-      <Name>SampleFunctions</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
