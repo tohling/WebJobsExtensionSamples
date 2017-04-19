@@ -24,7 +24,7 @@ namespace Host
             config.AddExtension(sample2Extension);
 
             // Debug diagnostics!
-            config.GetTooling().DebugDumpGraph(Console.Out);
+            config.CreateMetadataProvider().DebugDumpGraph(Console.Out);
 
             var host = new JobHost(config);
 

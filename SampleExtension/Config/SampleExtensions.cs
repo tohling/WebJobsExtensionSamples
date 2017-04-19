@@ -40,9 +40,10 @@ namespace SampleExtension.Config
             context.AddConverter<SampleItem, string>(ConvertToString);
 
             // Create 2 binding rules for the Sample attribute.
-            context.AddBindingRule<SampleAttribute>().
-                BindToInput<SampleItem>(BuildItemFromAttr). 
-                BindToCollector<SampleItem>(BuildCollector);
+            var rule = context.AddBindingRule<SampleAttribute>();
+
+            rule.BindToInput<SampleItem>(BuildItemFromAttr);
+            rule.BindToCollector<SampleItem>(BuildCollector);
         }
 
         private string GetRoot(SampleAttribute attribute)
