@@ -40,7 +40,8 @@ namespace SampleFunctions
             log.WriteLine($"{item.Name}:{item.Contents}");
         }
 
-        #region Using 2nd extensions
+#if false
+#region Using 2nd extensions
 
         // Bind to input as rich type:
         // BindToInput<SampleItem> --> item
@@ -52,6 +53,7 @@ namespace SampleFunctions
         {
             log.WriteLine($"Via custom type {item.Name}:{item.Value}");
         }
-        #endregion 
+#endregion
+#endif
     }
 }

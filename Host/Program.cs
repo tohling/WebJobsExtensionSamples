@@ -20,8 +20,8 @@ namespace Host
             config.AddExtension(sampleExtension);
 
             // A 2nd extension that adds a custom rule on top of the first extension. 
-            var sample2Extension = new SampleExtension.Config.Sample2Extensions();
-            config.AddExtension(sample2Extension);
+            //var sample2Extension = new SampleExtension.Config.Sample2Extensions();
+            //config.AddExtension(sample2Extension);
 
             // Debug diagnostics!
             config.CreateMetadataProvider().DebugDumpGraph(Console.Out);
@@ -33,8 +33,8 @@ namespace Host
             var method = typeof(Functions).GetMethod("Writer");
             host.Call(method);
 
-            method = typeof(Functions).GetMethod("Reader3");
-            host.Call(method, new { name = "tom" });
+            //method = typeof(Functions).GetMethod("Reader3");
+            //host.Call(method, new { name = "tom" });
 
             // host.RunAndBlock();
         }
