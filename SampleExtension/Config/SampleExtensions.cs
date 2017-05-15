@@ -77,7 +77,7 @@ namespace SampleExtension.Config
         private SampleItem BuildItemFromAttr(SampleAttribute attribute)
         {
             var root = GetRoot(attribute);
-            var path = Path.Combine(root, attribute.Name);
+            var path = Path.Combine(root, attribute.FileName);
             if (!File.Exists(path))
             {
                 return null;
@@ -85,7 +85,7 @@ namespace SampleExtension.Config
             var contents = File.ReadAllText(path);
             return new SampleItem
             {
-                  Name = attribute.Name,
+                  Name = attribute.FileName,
                   Contents = contents
             };
         }             

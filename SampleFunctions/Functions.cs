@@ -23,7 +23,7 @@ namespace SampleFunctions
         [NoAutomaticTrigger]
         public void Reader(
             string name,  // from trigger
-            [Sample(Name = "{name}")] string contents, 
+            [Sample(FileName = "{name}")] string contents, 
             TraceWriter log)
         {
             log.Info(contents);
@@ -34,7 +34,7 @@ namespace SampleFunctions
         [NoAutomaticTrigger]
         public void Reader2(
             string name,  // from trigger
-            [Sample(Name = "{name}")] SampleItem item,
+            [Sample(FileName = "{name}")] SampleItem item,
             TextWriter log)
         {
             log.WriteLine($"{item.Name}:{item.Contents}");

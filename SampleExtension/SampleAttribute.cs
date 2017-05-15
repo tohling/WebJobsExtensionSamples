@@ -15,7 +15,7 @@ namespace SampleExtension
     {
         // Name of file to read. 
         [AutoResolve]
-        public string Name { get; set; }
+        public string FileName { get; set; }
 
         // path where 
         [AppSetting(Default = "SamplePath")]
