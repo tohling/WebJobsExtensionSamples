@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26507.0
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Host", "Host\Host.csproj", "{CF992C26-5A64-4FED-8295-FB2CC4FE5547}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample2Extension", "Sample2Extension\Sample2Extension.csproj", "{8AAF014A-B562-4FE5-83C1-DF0F4F052062}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionApp", "FunctionApp\FunctionApp.csproj", "{A84D6EB5-2A20-44CD-A468-3BB446F44B4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CognitiveServicesExtension", "CognitiveServicesExtension\CognitiveServicesExtension.csproj", "{0B8A8C61-3E40-4555-A326-7288807E0D97}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{A84D6EB5-2A20-44CD-A468-3BB446F44B4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A84D6EB5-2A20-44CD-A468-3BB446F44B4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A84D6EB5-2A20-44CD-A468-3BB446F44B4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B8A8C61-3E40-4555-A326-7288807E0D97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B8A8C61-3E40-4555-A326-7288807E0D97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B8A8C61-3E40-4555-A326-7288807E0D97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B8A8C61-3E40-4555-A326-7288807E0D97}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

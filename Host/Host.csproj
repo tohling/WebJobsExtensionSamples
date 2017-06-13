@@ -142,6 +142,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CognitiveServicesExtension\CognitiveServicesExtension.csproj">
+      <Project>{0b8a8c61-3e40-4555-a326-7288807e0d97}</Project>
+      <Name>CognitiveServicesExtension</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sample2Extension\Sample2Extension.csproj">
       <Project>{8aaf014a-b562-4fe5-83c1-df0f4f052062}</Project>
       <Name>Sample2Extension</Name>
