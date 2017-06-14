@@ -4,6 +4,7 @@
 using Microsoft.Azure.WebJobs.Host.Config;
 using Microsoft.ProjectOxford.Vision;
 using Microsoft.ProjectOxford.Vision.Contract;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Text;
 
@@ -31,6 +32,7 @@ namespace CognitiveServicesExtension.Config
 
             // This is useful on input. 
             context.AddConverter<OcrResults, string>(ConvertToString);
+            context.AddConverter<OcrResults, JObject>(ConvertToJObject);
 
             var rule = context.AddBindingRule<ImageToTextAttribute>();
 
@@ -61,6 +63,11 @@ namespace CognitiveServicesExtension.Config
             return stringBuilder.ToString();
         }
 
+        private JObject ConvertToJObject(OcrResults results)
+        {
+            return JObject.FromObject(results);
+        }
+
         // All {} and %% in the Attribute have been resolved by now. 
         private OcrResults BuildItemFromAttr(ImageToTextAttribute attribute)
         {
@@ -77,13 +84,9 @@ namespace CognitiveServicesExtension.Config
             {
                 results = visionServiceClient.RecognizeTextAsync(attribute.ImageUrl, language, detectOrientation).Result;
             }
-            else if(attribute.ImageStream != null)
-            {
-                results = visionServiceClient.RecognizeTextAsync(attribute.ImageStream, language, detectOrientation).Result;
-            }
             else
             {
-                throw new InvalidOperationException("Missing image url or stream.");
+                throw new InvalidOperationException("Missing image url.");
             }
 
             return results;

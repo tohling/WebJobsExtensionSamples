@@ -247,6 +247,16 @@ namespace SampleFunctions
         }
 
         [NoAutomaticTrigger]
+        public void EmotionGetJObject(
+            string imageUrl,  // from trigger
+            [ImageEmotion(ImageUrl = "{imageUrl}")] JArray results,
+            TraceWriter log)
+        {
+            string result = ConvertFromJObject(results);
+            log.Info(result);
+        }
+
+        [NoAutomaticTrigger]
         public void EmotionGetEmotionResults(
             string imageUrl,  // from trigger
             [ImageEmotion(ImageUrl = "{imageUrl}")]Emotion[] results,
@@ -279,6 +289,11 @@ namespace SampleFunctions
         }
 
         private string ConvertFromJObject(JObject result)
+        {
+            return JsonConvert.SerializeObject(result, Formatting.Indented);
+        }
+
+        private string ConvertFromJObject(JArray result)
         {
             return JsonConvert.SerializeObject(result, Formatting.Indented);
         }

@@ -5,6 +5,7 @@ using CognitiveServicesExtension.Config.Speech;
 using Microsoft.Azure.WebJobs.Host.Config;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
+using Newtonsoft.Json.Linq;
 using NAudio.Wave;
 using System;
 using System.IO;
@@ -45,9 +46,16 @@ namespace CognitiveServicesExtension.Config
         /// <param name="context"></param>
         public void Initialize(ExtensionConfigContext context)
         {
+            context.AddConverter<string, JObject>(ConvertToJObject);
+
             var rule = context.AddBindingRule<TextToSpeechAttribute>();
 
             rule.BindToInput<string>(BuildItemFromAttr);
+        }
+
+        private JObject ConvertToJObject(string result)
+        {
+            return JObject.FromObject(result);
         }
 
         // All {} and %% in the Attribute have been resolved by now. 

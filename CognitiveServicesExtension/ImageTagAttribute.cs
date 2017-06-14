@@ -18,9 +18,6 @@ namespace CognitiveServicesExtension
         [AutoResolve]
         public string ImageUrl { get; set; }
 
-        [AutoResolve]
-        public Stream ImageStream { get; set; }
-
         // path where 
         [AppSetting(Default = "VisionSubscriptionKey")]
         public string SubscriptionKey { get; set; }

@@ -28,10 +28,16 @@ namespace CognitiveServicesExtension.Config
             // Register converters. These help convert between the user's parameter type
             //  and the type specified by the binding rules. 
             context.AddConverter<Emotion[], string>(ConvertToString);
+            context.AddConverter<Emotion[], JArray>(ConvertToJObject);
 
             var rule = context.AddBindingRule<ImageEmotionAttribute>();
 
             rule.BindToInput<Emotion[]>(BuildItemFromAttr);
+        }
+
+        private JArray ConvertToJObject(Emotion[] result)
+        {
+           return JArray.FromObject(result);
         }
 
         private string ConvertToString(Emotion[] result)
@@ -49,13 +55,9 @@ namespace CognitiveServicesExtension.Config
             {
                 result = emotionServiceClient.RecognizeAsync(attribute.ImageUrl).Result;
             }
-            else if (attribute.ImageStream != null)
-            {
-                result = emotionServiceClient.RecognizeAsync(attribute.ImageStream).Result;
-            }
             else
             {
-                throw new InvalidOperationException("Missing image url or stream.");
+                throw new InvalidOperationException("Missing image url.");
             }
 
             return result;

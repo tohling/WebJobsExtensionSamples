@@ -112,7 +112,11 @@ namespace Host
 
             method = typeof(Functions).GetMethod("EmotionGetString");
             host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/surprised.jpg" });
+            */
+            method = typeof(Functions).GetMethod("EmotionGetJObject");
+            host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/surprised.jpg" });
 
+            /*
             method = typeof(Functions).GetMethod("EmotionGetEmotionResults");
             host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/surprised.jpg" });
             
@@ -122,7 +126,7 @@ namespace Host
 
             method = typeof(Functions).GetMethod("SpeechToTextGetResult");
             host.Call(method, new { audioUrl = "http://hutohant10store.blob.core.windows.net/test/whatstheweatherlike.wav" });
-            */
+            
 
             method = typeof(Functions).GetMethod("TextToSpeechGetResult");
             host.Call(method, 
@@ -134,6 +138,7 @@ namespace Host
                     blobContainerName = "speech",
                     blobName = "nightadvice.wav"
             });
+            */
 
             // host.RunAndBlock();
         }

@@ -4,6 +4,7 @@
 using Microsoft.Azure.WebJobs.Host.Config;
 using Microsoft.CognitiveServices.SpeechRecognition;
 using Microsoft.WindowsAzure.Storage.Blob;
+using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
 using System.Text;
@@ -28,8 +29,6 @@ namespace CognitiveServicesExtension.Config
 
         private bool textReady = false;
 
-        private string storageConnectionString;
-
         /// <summary>
         /// This callback is invoked by the WebJobs framework before the host starts execution. 
         /// It should add the binding rules and converters for our new <see cref="SpeechToTextAttribute"/> 
@@ -37,9 +36,16 @@ namespace CognitiveServicesExtension.Config
         /// <param name="context"></param>
         public void Initialize(ExtensionConfigContext context)
         {
+            context.AddConverter<string, JObject>(ConvertToJObject);
+
             var rule = context.AddBindingRule<SpeechToTextAttribute>();
 
             rule.BindToInput<string>(BuildItemFromAttr);
+        }
+
+        private JObject ConvertToJObject(string result)
+        {
+            return JObject.FromObject(result);
         }
 
         // All {} and %% in the Attribute have been resolved by now. 
@@ -55,16 +61,7 @@ namespace CognitiveServicesExtension.Config
             }
             else
             {
-                throw new InvalidOperationException("Missing audio url");
-            }
-
-            if (!string.IsNullOrEmpty(attribute.Connection))
-            {
-                this.storageConnectionString = attribute.Connection;
-            }
-            else
-            {
-                throw new InvalidOperationException("Missing storage connection string.");
+                throw new InvalidOperationException("Missing audio url.");
             }
 
             while (!textReady)

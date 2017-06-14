@@ -60,13 +60,9 @@ namespace CognitiveServicesExtension.Config
             {
                 result = visionServiceClient.AnalyzeImageInDomainAsync(attribute.ImageUrl, GetDomainModel(attribute.ModelName)).Result;
             }
-            else if (attribute.ImageStream != null)
-            {
-                result = visionServiceClient.AnalyzeImageInDomainAsync(attribute.ImageStream, GetDomainModel(attribute.ModelName)).Result;
-            }
             else
             {
-                throw new InvalidOperationException("Missing image url or stream.");
+                throw new InvalidOperationException("Missing image url.");
             }
 
             return result;

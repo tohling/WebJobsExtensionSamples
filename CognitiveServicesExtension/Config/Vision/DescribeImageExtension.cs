@@ -60,13 +60,9 @@ namespace CognitiveServicesExtension.Config
             {
                 result = visionServiceClient.DescribeAsync(attribute.ImageUrl, maxCandidatesidth).Result;
             }
-            else if (attribute.ImageStream != null)
-            {
-                result = visionServiceClient.DescribeAsync(attribute.ImageStream, maxCandidatesidth).Result;
-            }
             else
             {
-                throw new InvalidOperationException("Missing image url or stream.");
+                throw new InvalidOperationException("Missing image url.");
             }
 
             return result;

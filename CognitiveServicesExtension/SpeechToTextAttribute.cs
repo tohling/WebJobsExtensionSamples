@@ -23,8 +23,5 @@ namespace CognitiveServicesExtension
         // path where 
         [AppSetting(Default = "SpeechSubscriptionKey")]
         public string SubscriptionKey { get; set; }
-
-        [AppSetting(Default = "SpeechConnectionString")]
-        public string Connection { get; set; }
     }
 }

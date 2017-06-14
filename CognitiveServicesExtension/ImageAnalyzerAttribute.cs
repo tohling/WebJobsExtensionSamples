@@ -19,9 +19,6 @@ namespace CognitiveServicesExtension
         public string ImageUrl { get; set; }
 
         [AutoResolve]
-        public Stream ImageStream { get; set; }
-
-        [AutoResolve]
         public string VisualFeatures { get; set; }
 
         [AutoResolve]

@@ -55,13 +55,9 @@ namespace CognitiveServicesExtension.Config
             {
                 result = visionServiceClient.GetTagsAsync(attribute.ImageUrl).Result;
             }
-            else if (attribute.ImageStream != null)
-            {
-                result = visionServiceClient.GetTagsAsync(attribute.ImageStream).Result;
-            }
             else
             {
-                throw new InvalidOperationException("Missing image url or stream.");
+                throw new InvalidOperationException("Missing image url.");
             }
 
             return result;

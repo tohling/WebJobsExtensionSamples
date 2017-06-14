@@ -22,9 +22,6 @@ namespace CognitiveServicesExtension
         public string Language { get; set; }
 
         [AutoResolve]
-        public Stream ImageStream { get; set; }
-
-        [AutoResolve]
         public string DetectOrientation { get; set; }
 
         // path where 
