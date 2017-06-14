@@ -18,8 +18,10 @@ namespace SampleExtension.Config
         {
             // Add a SampleItem-->CustomType<T>
             // 'OpenType' is just a substitute for a generic T. 
+            /*
             context.AddBindingRule<SampleAttribute>().
                 AddConverter<SampleItem, CustomType<OpenType>>(typeof(CustomConverter<>));
+                */
         }
 
         // A converter.

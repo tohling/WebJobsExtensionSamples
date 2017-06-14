@@ -45,6 +45,8 @@ namespace CognitiveServicesExtension.Config
 
         private bool useTemplate = false;
 
+        private bool isFemale = true;
+
         private TextToCallAttribute textToCallAttribute;
 
         private string tempFilePath;
@@ -134,10 +136,9 @@ namespace CognitiveServicesExtension.Config
             sythesizer.OnAudioAvailable += SaveAudio;
             sythesizer.OnError += ErrorHandler;
 
-            var gender = Gender.Female;
             if (textToCallAttribute.VoiceType.Equals("male", StringComparison.InvariantCultureIgnoreCase))
             {
-                gender = Gender.Male;
+                isFemale = false;
             }
 
             var locale = textToCallAttribute.Locale ?? DefaultLocale;
@@ -153,7 +154,7 @@ namespace CognitiveServicesExtension.Config
             {
                 RequestUri = new Uri(RequestUri),
                 Text = text,
-                VoiceType = gender,
+                VoiceType = isFemale ? Gender.Female : Gender.Male,
                 Locale = locale,
                 VoiceName = DefaultVoiceName,
                 OutputFormat = DefaultOutputFormat,
@@ -282,10 +283,11 @@ namespace CognitiveServicesExtension.Config
 
         private string GetXmlContent(string audioUrl)
         {
+            string voice = this.isFemale ? "amy" : "man";
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
             sb.AppendLine("<Response>");
-            sb.AppendLine($"<Say voice=\"alice\">{DefaultTwilioPhrase}</Say>");
+            sb.AppendLine($"<Say voice=\"{voice}\">{DefaultTwilioPhrase}</Say>");
             sb.AppendLine($"<Play>{audioUrl}</Play>");
             sb.AppendLine("</Response>");
             return sb.ToString();
