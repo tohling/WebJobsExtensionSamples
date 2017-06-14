@@ -240,20 +240,41 @@ namespace SampleFunctions
         [NoAutomaticTrigger]
         public void EmotionGetString(
             string imageUrl,  // from trigger
-            string subscriptionKey,
-            [ImageEmotion(ImageUrl = "{imageUrl}", SubscriptionKey = "{subscriptionKey}")] string results,
+            [ImageEmotion(ImageUrl = "{imageUrl}")] string results,
             TraceWriter log)
         {
             log.Info(results);
         }
 
         [NoAutomaticTrigger]
-        public void EmotionGetHandwritingEmotionResults(
-            string subscriptionKey,
-            [ImageEmotion(ImageUrl = "{imageUrl}", SubscriptionKey = "{subscriptionKey}")]Emotion[] results,
+        public void EmotionGetEmotionResults(
+            string imageUrl,  // from trigger
+            [ImageEmotion(ImageUrl = "{imageUrl}")]Emotion[] results,
             TraceWriter log)
         {
             string result = ConvertFromEmotion(results);
+            log.Info(result);
+        }
+
+        [NoAutomaticTrigger]
+        public void SpeechToTextGetResult(
+            string audioUrl,  // from trigger
+            [SpeechToText(AudioUrl = "{audioUrl}")]string result,
+            TraceWriter log)
+        {
+            log.Info(result);
+        }
+
+        [NoAutomaticTrigger]
+        public void TextToSpeechGetResult(
+            string text,  // from trigger
+            string voiceType,
+            string locale,
+            string blobContainerName,
+            string blobName,
+            [TextToSpeech(Text = "{text}", VoiceType = "{voiceType}", Locale = "{locale}", BlobContainerName = "{blobContainerName}", BlobName = "{blobName}")]string result,
+            TraceWriter log)
+        {
             log.Info(result);
         }
 

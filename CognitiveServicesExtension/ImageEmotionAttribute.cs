@@ -22,7 +22,7 @@ namespace CognitiveServicesExtension
         public Stream ImageStream { get; set; }
 
         // path where 
-        [AutoResolve]
+        [AppSetting(Default = "EmotionSubscriptionKey")]
         public string SubscriptionKey { get; set; }
     }
 }

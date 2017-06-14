@@ -4,7 +4,6 @@
 using System;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Description;
-using System.IO;
 
 namespace CognitiveServicesExtension
 {
@@ -12,17 +11,20 @@ namespace CognitiveServicesExtension
     /// Binding attribute to place on user code for WebJobs. 
     /// </summary>
     [Binding]
-    public class HandwritingToTextAttribute : Attribute
+    public class SpeechToTextAttribute : Attribute
     {
         // Name of file to read. 
         [AutoResolve]
-        public string ImageUrl { get; set; }
+        public string AudioUrl { get; set; }
 
         [AutoResolve]
-        public Stream ImageStream { get; set; }
+        public string Locale { get; set; }
 
         // path where 
-        [AppSetting(Default = "VisionSubscriptionKey")]
+        [AppSetting(Default = "SpeechSubscriptionKey")]
         public string SubscriptionKey { get; set; }
+
+        [AppSetting(Default = "SpeechConnectionString")]
+        public string Connection { get; set; }
     }
 }

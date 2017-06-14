@@ -25,7 +25,7 @@ namespace CognitiveServicesExtension
         public string MaxCandidates { get; set; }
 
         // path where 
-        [AppSetting(Default = "SubscriptionKey")]
+        [AppSetting(Default = "VisionSubscriptionKey")]
         public string SubscriptionKey { get; set; }
     }
 }

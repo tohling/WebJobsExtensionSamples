@@ -33,16 +33,6 @@ namespace CognitiveServicesExtension.Config
             rule.BindToInput<byte[]>(BuildItemFromAttr);
         }
 
-        private JObject ConvertToJObject(AnalysisResult result)
-        {
-            return JObject.FromObject(result);
-        }
-
-        private string ConvertToString(AnalysisResult result)
-        {
-            return JsonConvert.SerializeObject(result, Formatting.Indented);
-        }
-
         // All {} and %% in the Attribute have been resolved by now. 
         private byte[] BuildItemFromAttr(ImageThumbnailAttribute attribute)
         {

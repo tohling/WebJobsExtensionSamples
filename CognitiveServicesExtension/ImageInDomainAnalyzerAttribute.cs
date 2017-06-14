@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-// Copyright (c) .NET Foundation. All rights reserved.
+﻿// Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System;
@@ -29,7 +25,7 @@ namespace CognitiveServicesExtension
         public Stream ImageStream { get; set; }
 
         // path where 
-        [AppSetting(Default = "SubscriptionKey")]
+        [AppSetting(Default = "VisionSubscriptionKey")]
         public string SubscriptionKey { get; set; }
     }
 }
