@@ -47,6 +47,7 @@ namespace Host
             var detectEmotionExtension = new CognitiveServicesExtension.Config.DetecEmotionExtension();
             var speechToTextExtension = new CognitiveServicesExtension.Config.SpeechToTextExtension();
             var textToSpeechExtension = new CognitiveServicesExtension.Config.TextToSpeechExtension();
+            var textToCallExtension = new CognitiveServicesExtension.Config.TextToCallExtension();
             config.AddExtension(imageToTextExtension);
             config.AddExtension(analyzeImageExtension);
             config.AddExtension(analyzeImageInDomainExtension);
@@ -57,6 +58,7 @@ namespace Host
             config.AddExtension(detectEmotionExtension);
             config.AddExtension(speechToTextExtension);
             config.AddExtension(textToSpeechExtension);
+            config.AddExtension(textToCallExtension);
 
             var method = typeof(Functions).GetMethod("ImageToTextInterpreter");
             host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/photo.png", detectOrientation = "true" });
@@ -67,10 +69,10 @@ namespace Host
             
             method = typeof(Functions).GetMethod("ImageAnalyzerGetString");
             host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/happy.jpg", visualFeatures = "Adult,Categories,Color,Description,Faces,ImageType,Tags" });
-
+            
             method = typeof(Functions).GetMethod("ImageAnalyzerGetJObject");
             host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/happy.jpg", visualFeatures = "Adult,Categories,Color,Description,Faces,ImageType,Tags" });
-            
+            /*
             method = typeof(Functions).GetMethod("ImageAnalyzerGetAnalysisResult");
             host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/meeting.jpg", visualFeatures = "Adult,Categories,Color,Description,Faces,ImageType,Tags" });
             
@@ -112,10 +114,10 @@ namespace Host
 
             method = typeof(Functions).GetMethod("EmotionGetString");
             host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/surprised.jpg" });
-            */
+            
             method = typeof(Functions).GetMethod("EmotionGetJObject");
             host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/surprised.jpg" });
-
+            */
             /*
             method = typeof(Functions).GetMethod("EmotionGetEmotionResults");
             host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/surprised.jpg" });
@@ -139,6 +141,20 @@ namespace Host
                     blobName = "nightadvice.wav"
             });
             */
+
+            method = typeof(Functions).GetMethod("TextToCallGetResult");
+            host.Call(method,
+                new
+                {
+                    text = "Greeting2",
+                    voiceType = "male",
+                    locale = "en-US",
+                    blobContainerName = "speech",
+                    blobName = "greeting1.wav",
+                    callerNumber = "+12067353578",
+                    calleeNumber = "+14257868063",
+                    useTemplate = "true"
+                });
 
             // host.RunAndBlock();
         }

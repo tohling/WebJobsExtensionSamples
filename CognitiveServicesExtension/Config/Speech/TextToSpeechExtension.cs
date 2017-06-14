@@ -188,7 +188,7 @@ namespace CognitiveServicesExtension.Config
             }
 
             CloudBlockBlob cloudBlockBlob = cloudBlobContainer.GetBlockBlobReference(this.textToSpeechAttribute.BlobName);
-            cloudBlockBlob.Properties.ContentType = "application/octet-stream";
+            cloudBlockBlob.Properties.ContentType = "audio/wav";
             await cloudBlockBlob.UploadFromFileAsync(tempFilePath);
 
             return cloudBlockBlob.Uri.ToString();

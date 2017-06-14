@@ -88,7 +88,13 @@ namespace SampleFunctions
             TraceWriter log)
         {
             string result = ConvertFromJObject(analysisResult);
-            log.Info(result);
+            var list = analysisResult["Description"]["Captions"];
+            string outstr = null;
+            foreach (var item in list)
+            {
+                outstr += item["Text"].ToString() + ", ";
+            }
+            log.Info(outstr);
         }
 
         [NoAutomaticTrigger]
@@ -283,6 +289,30 @@ namespace SampleFunctions
             string blobContainerName,
             string blobName,
             [TextToSpeech(Text = "{text}", VoiceType = "{voiceType}", Locale = "{locale}", BlobContainerName = "{blobContainerName}", BlobName = "{blobName}")]string result,
+            TraceWriter log)
+        {
+            log.Info(result);
+        }
+
+        [NoAutomaticTrigger]
+        public void TextToCallGetResult(
+            string text,  // from trigger
+            string voiceType,
+            string locale,
+            string blobContainerName,
+            string blobName,
+            string callerNumber,
+            string calleeNumber,
+            string useTemplate,
+            [TextToCall(
+                Text = "{text}",
+                VoiceType = "{voiceType}",
+                Locale = "{locale}",
+                BlobContainerName = "{blobContainerName}",
+                BlobName = "{blobName}",
+                CallerNumber = "{callerNumber}",
+                CalleeNumber = "{calleeNumber}",
+                UseTemplate = "{useTemplate}")]string result,
             TraceWriter log)
         {
             log.Info(result);
