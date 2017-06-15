@@ -100,6 +100,7 @@ namespace CognitiveServicesExtension.Config
                 && !string.IsNullOrEmpty(this.textToCallAttribute.BlobName))
             {
                 audioUri = this.UploadAudioAsync().Result;
+                Task.Delay(TimeSpan.FromSeconds(1)).Wait();
                 twilioXmlUri = this.UploadTwilioXmlAsync(audioUri).Result;
                 this.CallNumber(twilioXmlUri);
             }
@@ -283,7 +284,7 @@ namespace CognitiveServicesExtension.Config
 
         private string GetXmlContent(string audioUrl)
         {
-            string voice = this.isFemale ? "amy" : "man";
+            string voice = this.isFemale ? "alice" : "man";
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
             sb.AppendLine("<Response>");
@@ -297,7 +298,7 @@ namespace CognitiveServicesExtension.Config
         {
             if(string.IsNullOrEmpty(this.textToCallAttribute.TwilioAccountSid)
                 || string.IsNullOrEmpty(this.textToCallAttribute.TwilioAuthToken)
-                || string.IsNullOrEmpty(this.textToCallAttribute.CalleeNumber)
+                || string.IsNullOrEmpty(this.textToCallAttribute.CallerNumber)
                 || string.IsNullOrEmpty(this.textToCallAttribute.CalleeNumber))
             {
                 throw new InvalidDataException("Missing or invalid Twilio configuration. Kindly provide TwilioAccountSid, TwilioAuthToken, CallerNumber, CalleeNumber");

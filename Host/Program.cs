@@ -146,14 +146,14 @@ namespace Host
             host.Call(method,
                 new
                 {
-                    text = "Greeting2",
-                    voiceType = "male",
+                    text = "Today is very sunny. We should all call it a day and head for the beach.",
+                    voiceType = "female",
                     locale = "en-US",
                     blobContainerName = "speech",
-                    blobName = "greeting1.wav",
+                    blobName = "beach.wav",
                     callerNumber = "+12067353578",
                     calleeNumber = "+14257868063",
-                    useTemplate = "true"
+                    useTemplate = "false"
                 });
 
             // host.RunAndBlock();
