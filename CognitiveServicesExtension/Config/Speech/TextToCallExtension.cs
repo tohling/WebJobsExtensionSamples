@@ -25,8 +25,6 @@ namespace CognitiveServicesExtension.Config
     /// </summary>
     public class TextToCallExtension : IExtensionConfigProvider
     {
-        static readonly TimeSpan WaitTimeInSecond = TimeSpan.FromSeconds(3);
-
         const string BearerLabel = "Bearer ";
 
         const string TempDirEnvKey = "TEMP";
@@ -92,7 +90,7 @@ namespace CognitiveServicesExtension.Config
 
             while (!audioReady)
             {
-                Task.Delay(WaitTimeInSecond).Wait();
+                Thread.Sleep(5000);
             }
 
             if (!string.IsNullOrEmpty(this.textToCallAttribute.Connection)
@@ -100,7 +98,6 @@ namespace CognitiveServicesExtension.Config
                 && !string.IsNullOrEmpty(this.textToCallAttribute.BlobName))
             {
                 audioUri = this.UploadAudioAsync().Result;
-                Task.Delay(TimeSpan.FromSeconds(1)).Wait();
                 twilioXmlUri = this.UploadTwilioXmlAsync(audioUri).Result;
                 this.CallNumber(twilioXmlUri);
             }
@@ -267,7 +264,7 @@ namespace CognitiveServicesExtension.Config
 
         private void AddTemplateGreetings()
         {
-            this.templateGreeting.Add("Greeting1", "Azure Functions BYOB framework is very addictive.  Mike Stall and Donna Malayeri are rockstars!");
+            this.templateGreeting.Add("Greeting1", "Azure Functions BYOB framework is awesome.  Mike Stall and Donna Malayeri are rockstars!");
             this.templateGreeting.Add("Greeting2", "This is an IcM Sev 2 Incident Id 37852649: WA-WebSites: [Premier Customer- Boeing] Azure Functions latency observed while sending messages to multiple Queues.");
         }
 
