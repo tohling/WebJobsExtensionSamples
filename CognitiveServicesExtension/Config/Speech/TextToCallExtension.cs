@@ -98,7 +98,9 @@ namespace CognitiveServicesExtension.Config
                 && !string.IsNullOrEmpty(this.textToCallAttribute.BlobName))
             {
                 audioUri = this.UploadAudioAsync().Result;
+                Thread.Sleep(5000);
                 twilioXmlUri = this.UploadTwilioXmlAsync(audioUri).Result;
+                Thread.Sleep(3000);
                 this.CallNumber(twilioXmlUri);
             }
             else

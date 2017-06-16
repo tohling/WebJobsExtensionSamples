@@ -10,27 +10,14 @@ using System.Text;
 
 namespace CognitiveServicesExtension.Config
 {
-    /// <summary>
-    /// Extension for binding <see cref="ImageToTextAttribute"/>.
-    /// This reads and writes files, wrapped as <see cref="OcrResults"/> 
-    /// </summary>
     public class ImageToTextExtension : IExtensionConfigProvider
     {
         const string DefaultLanguage = "unk";
 
         private static VisionServiceClient visionServiceClient;
 
-        /// <summary>
-        /// This callback is invoked by the WebJobs framework before the host starts execution. 
-        /// It should add the binding rules and converters for our new <see cref="ImageToTextAttribute"/> 
-        /// </summary>
-        /// <param name="context"></param>
         public void Initialize(ExtensionConfigContext context)
         {
-            // Register converters. These help convert between the user's parameter type
-            //  and the type specified by the binding rules. 
-
-            // This is useful on input. 
             context.AddConverter<OcrResults, string>(ConvertToString);
             context.AddConverter<OcrResults, JObject>(ConvertToJObject);
 
@@ -68,12 +55,12 @@ namespace CognitiveServicesExtension.Config
             return JObject.FromObject(results);
         }
 
-        // All {} and %% in the Attribute have been resolved by now. 
         private OcrResults BuildItemFromAttr(ImageToTextAttribute attribute)
         {
             string language = attribute.Language ?? DefaultLanguage;
             bool detectOrientation = true;
-            if(!string.IsNullOrEmpty(attribute.DetectOrientation) && attribute.DetectOrientation.Equals("false", System.StringComparison.InvariantCultureIgnoreCase))
+            if(!string.IsNullOrEmpty(attribute.DetectOrientation) 
+                && attribute.DetectOrientation.Equals("false", System.StringComparison.InvariantCultureIgnoreCase))
             {
                 detectOrientation = false;
             }

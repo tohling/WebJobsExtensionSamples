@@ -14,7 +14,7 @@ namespace CognitiveServicesExtension
     [Binding]
     public class ImageToTextAttribute : Attribute
     {
-        // Name of file to read. 
+        // Url of image to read. 
         [AutoResolve]
         public string ImageUrl { get; set; }
 
