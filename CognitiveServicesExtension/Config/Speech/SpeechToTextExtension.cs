@@ -159,7 +159,7 @@ namespace CognitiveServicesExtension.Config
         }
 
         /// <summary>
-        /// Sends the audio helper.
+        /// Sends the audio helper. Ref: https://github.com/Microsoft/Cognitive-Speech-STT-Windows
         /// </summary>
         /// <param name="audioUrl">The url of the wav file.</param>
         private void SendAudioHelper(string audioUrl)
