@@ -27,6 +27,15 @@ namespace CognitiveServicesExtension
         [AutoResolve]
         public string SmartCropping { get; set; }
 
+        [AppSetting(Default = "AzureWebJobsStorage")]
+        public string Connection { get; set; }
+
+        [AutoResolve]
+        public string BlobContainerName { get; set; }
+
+        [AutoResolve]
+        public string BlobName { get; set; }
+
         // path where 
         [AppSetting(Default = "VisionSubscriptionKey")]
         public string SubscriptionKey { get; set; }

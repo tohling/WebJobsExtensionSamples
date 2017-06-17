@@ -63,7 +63,6 @@ namespace Host
             var method = typeof(Functions).GetMethod("ImageToTextInterpreter");
             host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/photo.png", detectOrientation = "true" });
 
-            /*
             method = typeof(Functions).GetMethod("ImageToOcrResultsInterpreter");
             host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/photo.png", detectOrientation = "true" });
             
@@ -72,15 +71,15 @@ namespace Host
             
             method = typeof(Functions).GetMethod("ImageAnalyzerGetJObject");
             host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/happy.jpg", visualFeatures = "Adult,Categories,Color,Description,Faces,ImageType,Tags" });
-            /*
+
             method = typeof(Functions).GetMethod("ImageAnalyzerGetAnalysisResult");
             host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/meeting.jpg", visualFeatures = "Adult,Categories,Color,Description,Faces,ImageType,Tags" });
             
             method = typeof(Functions).GetMethod("ImageAnalyzerInDomainGetAnalysisResult");
             host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/satya.jpg", modelName = "celebrities"});
-            
-            method = typeof(Functions).GetMethod("ThumbnailGeneratorGetBytes");
-            host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/satya.jpg", width = "300", height = "500" , path = @"C:\temp\cogtest\satya_3by5.jpg"});
+
+            method = typeof(Functions).GetMethod("ThumbnailGeneratorGetString");
+            host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/satya.jpg", width = "300", height = "500" , smartCropping = "true", blobContainerName = "thumbnail", blobName = "satya_3by5.jpg"});
 
             method = typeof(Functions).GetMethod("ImageDescriberGetString");
             host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/satya.jpg", maxCandidates = "3" });
@@ -117,8 +116,7 @@ namespace Host
             
             method = typeof(Functions).GetMethod("EmotionGetJObject");
             host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/surprised.jpg" });
-            */
-            /*
+
             method = typeof(Functions).GetMethod("EmotionGetEmotionResults");
             host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/surprised.jpg" });
             
@@ -129,7 +127,7 @@ namespace Host
             method = typeof(Functions).GetMethod("SpeechToTextGetResult");
             host.Call(method, new { audioUrl = "http://hutohant10store.blob.core.windows.net/test/whatstheweatherlike.wav" });
             
-
+            /*
             method = typeof(Functions).GetMethod("TextToSpeechGetResult");
             host.Call(method, 
                 new
@@ -141,7 +139,7 @@ namespace Host
                     blobName = "nightadvice.wav"
             });
             */
-
+            /*
             method = typeof(Functions).GetMethod("TextToCallGetResult");
             host.Call(method,
                 new
@@ -155,6 +153,7 @@ namespace Host
                     calleeNumber = "+14257868063",
                     useTemplate = "false"
                 });
+                */
 
             // host.RunAndBlock();
         }

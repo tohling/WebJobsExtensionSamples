@@ -162,7 +162,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Config\DetectEmotionExtension.cs" />
+    <Compile Include="Config\Emotion\DetectEmotionExtension.cs" />
     <Compile Include="Config\Speech\SpeechToTextExtension.cs" />
     <Compile Include="Config\Speech\TextToCallExtension.cs" />
     <Compile Include="Config\Speech\TextToSpeechExtension.cs" />

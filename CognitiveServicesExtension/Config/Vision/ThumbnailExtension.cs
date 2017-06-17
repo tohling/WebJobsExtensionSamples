@@ -3,10 +3,10 @@
 
 using Microsoft.Azure.WebJobs.Host.Config;
 using Microsoft.ProjectOxford.Vision;
-using Microsoft.ProjectOxford.Vision.Contract;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
 using System;
+using System.Threading.Tasks;
 
 namespace CognitiveServicesExtension.Config
 {
@@ -30,12 +30,13 @@ namespace CognitiveServicesExtension.Config
 
             var rule = context.AddBindingRule<ImageThumbnailAttribute>();
 
-            rule.BindToInput<byte[]>(BuildItemFromAttr);
+            rule.BindToInput<string>(BuildItemFromAttr);
         }
 
         // All {} and %% in the Attribute have been resolved by now. 
-        private byte[] BuildItemFromAttr(ImageThumbnailAttribute attribute)
+        private string BuildItemFromAttr(ImageThumbnailAttribute attribute)
         {
+            string result = null;
             int width = 1;
             if(int.TryParse(attribute.Width, out width) == false)
             {
@@ -55,17 +56,42 @@ namespace CognitiveServicesExtension.Config
             }
 
             visionServiceClient = new VisionServiceClient(attribute.SubscriptionKey);
-            byte[] result = null;
+
+            byte[] thumbnail = null;
 
             if (!string.IsNullOrEmpty(attribute.ImageUrl))
             {
-                result = visionServiceClient.GetThumbnailAsync(attribute.ImageUrl, width, height, smartCropping).Result;
+                thumbnail = visionServiceClient.GetThumbnailAsync(attribute.ImageUrl, width, height, smartCropping).Result;
+
+                result = this.UploadThumbnailAsync(attribute, thumbnail).Result; 
             }
             else
             {
                 throw new InvalidOperationException("Missing image url.");
             }
             return result;
+        }
+
+        public async Task<string> UploadThumbnailAsync(ImageThumbnailAttribute attribute, byte[] thumbnail)
+        {
+            CloudStorageAccount cloudStorageAccount = CloudStorageAccount.Parse(attribute.Connection);
+            CloudBlobClient cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
+            CloudBlobContainer cloudBlobContainer = cloudBlobClient.GetContainerReference(attribute.BlobContainerName);
+
+            if (await cloudBlobContainer.CreateIfNotExistsAsync())
+            {
+                await cloudBlobContainer.SetPermissionsAsync(
+                    new BlobContainerPermissions
+                    {
+                        PublicAccess = BlobContainerPublicAccessType.Blob
+                    }
+                    );
+            }
+
+            CloudBlockBlob cloudBlockBlob = cloudBlobContainer.GetBlockBlobReference(attribute.BlobName);
+            await cloudBlockBlob.UploadFromByteArrayAsync(thumbnail, 0, thumbnail.Length);
+
+            return cloudBlockBlob.Uri.ToString();
         }
     }
 }

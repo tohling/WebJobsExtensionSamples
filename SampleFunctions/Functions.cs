@@ -141,16 +141,17 @@ namespace SampleFunctions
         }
 
         [NoAutomaticTrigger]
-        public void ThumbnailGeneratorGetBytes(
+        public void ThumbnailGeneratorGetString(
             string imageUrl,  // from trigger
             string width,
             string height,
-            string path,
-            [ImageThumbnail(ImageUrl = "{imageUrl}", Width = "{width}", Height = "{height}")] byte[] result,
+            string smartCropping,
+            string blobContainerName,
+            string blobName,
+            [ImageThumbnail(ImageUrl = "{imageUrl}", Width = "{width}", Height = "{height}", SmartCropping = "{smartCropping}", BlobContainerName = "{blobContainerName}", BlobName = "{blobName}")] string result,
             TraceWriter log)
         {
-            File.WriteAllBytes(path, result);
-            log.Info("Thumbnail generated");
+            log.Info(result);
         }
 
         [NoAutomaticTrigger]
