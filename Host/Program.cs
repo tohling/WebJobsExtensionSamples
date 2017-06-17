@@ -61,71 +61,71 @@ namespace Host
             config.AddExtension(textToCallExtension);
 
             var method = typeof(Functions).GetMethod("ImageToTextInterpreter");
-            host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/photo.png", detectOrientation = "true" });
+            host.Call(method, new { imageUrl = "http://<mystorageccount>.blob.core.windows.net/test/photo.png", detectOrientation = "true" });
 
             method = typeof(Functions).GetMethod("ImageToOcrResultsInterpreter");
-            host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/photo.png", detectOrientation = "true" });
+            host.Call(method, new { imageUrl = "http://<mystorageccount>.blob.core.windows.net/test/photo.png", detectOrientation = "true" });
             
             method = typeof(Functions).GetMethod("ImageAnalyzerGetString");
-            host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/happy.jpg", visualFeatures = "Adult,Categories,Color,Description,Faces,ImageType,Tags" });
+            host.Call(method, new { imageUrl = "http://<mystorageccount>.blob.core.windows.net/test/happy.jpg", visualFeatures = "Adult,Categories,Color,Description,Faces,ImageType,Tags" });
             
             method = typeof(Functions).GetMethod("ImageAnalyzerGetJObject");
-            host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/happy.jpg", visualFeatures = "Adult,Categories,Color,Description,Faces,ImageType,Tags" });
+            host.Call(method, new { imageUrl = "http://<mystorageccount>.blob.core.windows.net/test/happy.jpg", visualFeatures = "Adult,Categories,Color,Description,Faces,ImageType,Tags" });
 
             method = typeof(Functions).GetMethod("ImageAnalyzerGetAnalysisResult");
-            host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/meeting.jpg", visualFeatures = "Adult,Categories,Color,Description,Faces,ImageType,Tags" });
+            host.Call(method, new { imageUrl = "http://<mystorageccount>.blob.core.windows.net/test/meeting.jpg", visualFeatures = "Adult,Categories,Color,Description,Faces,ImageType,Tags" });
             
             method = typeof(Functions).GetMethod("ImageAnalyzerInDomainGetAnalysisResult");
-            host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/satya.jpg", modelName = "celebrities"});
+            host.Call(method, new { imageUrl = "http://<mystorageccount>.blob.core.windows.net/test/satya.jpg", modelName = "celebrities"});
 
             method = typeof(Functions).GetMethod("ThumbnailGeneratorGetString");
-            host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/satya.jpg", width = "300", height = "500" , smartCropping = "true", blobContainerName = "thumbnail", blobName = "satya_3by5.jpg"});
+            host.Call(method, new { imageUrl = "http://<mystorageccount>.blob.core.windows.net/test/satya.jpg", width = "300", height = "500" , smartCropping = "true", blobContainerName = "thumbnail", blobName = "satya_3by5.jpg"});
 
             method = typeof(Functions).GetMethod("ImageDescriberGetString");
-            host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/satya.jpg", maxCandidates = "3" });
+            host.Call(method, new { imageUrl = "http://<mystorageccount>.blob.core.windows.net/test/satya.jpg", maxCandidates = "3" });
 
             method = typeof(Functions).GetMethod("ImageDescriberGetJObject");
-            host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/satya.jpg", maxCandidates = "3" });
+            host.Call(method, new { imageUrl = "http://<mystorageccount>.blob.core.windows.net/test/satya.jpg", maxCandidates = "3" });
 
             method = typeof(Functions).GetMethod("ImageDescriberGetAnalysisResult");
-            host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/satya.jpg", maxCandidates = "3" });
+            host.Call(method, new { imageUrl = "http://<mystorageccount>.blob.core.windows.net/test/satya.jpg", maxCandidates = "3" });
 
             method = typeof(Functions).GetMethod("ImageTagGetString");
-            host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/meeting.jpg" });
+            host.Call(method, new { imageUrl = "http://<mystorageccount>.blob.core.windows.net/test/meeting.jpg" });
 
             method = typeof(Functions).GetMethod("ImageTagGetJObject");
-            host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/meeting.jpg" });
+            host.Call(method, new { imageUrl = "http://<mystorageccount>.blob.core.windows.net/test/meeting.jpg" });
 
             method = typeof(Functions).GetMethod("ImageTagGetAnalysisResult");
-            host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/meeting.jpg" });
+            host.Call(method, new { imageUrl = "http://<mystorageccount>.blob.core.windows.net/test/meeting.jpg" });
 
             method = typeof(Functions).GetMethod("HandwritingGetString");
-            host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/letter3.jpg" });
+            host.Call(method, new { imageUrl = "http://<mystorageccount>.blob.core.windows.net/test/letter3.jpg" });
 
             method = typeof(Functions).GetMethod("HandwritingGetHandwritingRecognitionOperationResult");
-            host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/letter3.jpg" });
+            host.Call(method, new { imageUrl = "http://<mystorageccount>.blob.core.windows.net/test/letter3.jpg" });
 
             method = typeof(Functions).GetMethod("EmotionGetString");
-            host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/angry.jpg" });
+            host.Call(method, new { imageUrl = "http://<mystorageccount>.blob.core.windows.net/test/angry.jpg" });
 
             method = typeof(Functions).GetMethod("EmotionGetEmotionResults");
-            host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/angry.jpg" });
+            host.Call(method, new { imageUrl = "http://<mystorageccount>.blob.core.windows.net/test/angry.jpg" });
 
             method = typeof(Functions).GetMethod("EmotionGetString");
-            host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/surprised.jpg" });
+            host.Call(method, new { imageUrl = "http://<mystorageccount>.blob.core.windows.net/test/surprised.jpg" });
             
             method = typeof(Functions).GetMethod("EmotionGetJObject");
-            host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/surprised.jpg" });
+            host.Call(method, new { imageUrl = "http://<mystorageccount>.blob.core.windows.net/test/surprised.jpg" });
 
             method = typeof(Functions).GetMethod("EmotionGetEmotionResults");
-            host.Call(method, new { imageUrl = "http://hutohant10store.blob.core.windows.net/test/surprised.jpg" });
+            host.Call(method, new { imageUrl = "http://<mystorageccount>.blob.core.windows.net/test/surprised.jpg" });
             
 
             method = typeof(Functions).GetMethod("SpeechToTextGetResult");
-            host.Call(method, new { audioUrl = "http://hutohant10store.blob.core.windows.net/test/amy.wav"});
+            host.Call(method, new { audioUrl = "http://<mystorageccount>.blob.core.windows.net/test/amy.wav" });
 
             method = typeof(Functions).GetMethod("SpeechToTextGetResult");
-            host.Call(method, new { audioUrl = "http://hutohant10store.blob.core.windows.net/test/whatstheweatherlike.wav" });
+            host.Call(method, new { audioUrl = "http://<mystorageccount>.blob.core.windows.net/test/whatstheweatherlike.wav" });
             
             /*
             method = typeof(Functions).GetMethod("TextToSpeechGetResult");
@@ -149,8 +149,8 @@ namespace Host
                     locale = "en-US",
                     blobContainerName = "speech",
                     blobName = "beach.wav",
-                    callerNumber = "+12067353578",
-                    calleeNumber = "+14257868063",
+                    callerNumber = "+12061112222",
+                    calleeNumber = "+14253334444",
                     useTemplate = "false"
                 });
                 */
